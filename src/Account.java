@@ -1,19 +1,16 @@
 import java.io.Serializable;
+import java.util.HashMap;
 
 public class Account implements Serializable {
-    private final String customerName;
+    HashMap<Integer, Integer> data = new HashMap<>();
     private int accountNumber;
     private double checkingBalance = 0;
     private double savingsBalance = 0;
     private int accountPin;
 
-    public Account(int accountNumber, String customerName) {
+    public Account(int accountNumber, int pinNumber) {
         this.accountNumber = accountNumber;
-        this.customerName = customerName;
-    }
-
-    public String getCustomerName() {
-        return customerName;
+        this.accountPin = pinNumber;
     }
 
     public int getAccountNumber() {
