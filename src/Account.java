@@ -25,6 +25,14 @@ public class Account implements Serializable {
         return accountPin;
     }
 
+    public double getCheckingBalance() {
+        return checkingBalance;
+    }
+
+    public double getSavingsBalance() {
+        return savingsBalance;
+    }
+
     public void setAccountPin(int accountPin) {
         this.accountPin = accountPin;
     }

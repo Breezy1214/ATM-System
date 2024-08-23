@@ -16,7 +16,7 @@ public class FileHandler {
         }
     }
 
-    public static void saveState(Object data, String fileName) {
+    public static void saveState(Object data, String fileName) throws IOException {
         createDirectory();
 
         try (FileOutputStream fileOut = new FileOutputStream(String.format("Database/%s.dat", fileName));
