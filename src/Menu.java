@@ -8,10 +8,11 @@ public class Menu {
     private static final String INVALID_INPUT = "Invalid input";
     private static final Scanner menuInput = new Scanner(System.in);
     private static Account account;
+
     private Menu() {
     }
-    
-    private static void checkBalance(){
+
+    private static void checkBalance() {
         System.out.println();
         System.out.println("1. Check Checking Balance");
         System.out.println("2. Check Savings Balance");
@@ -19,16 +20,18 @@ public class Menu {
         System.out.print(SELECTION_TEXT);
         boolean exit = false;
 
-        do{
+        do {
             try {
                 int selection = menuInput.nextInt();
 
                 switch (selection) {
                     case 1:
                         System.out.println("Checking: $" + account.getCheckingBalance());
+                        getMenuSelection();
                         break;
                     case 2:
                         System.out.println("Savings: $" + account.getSavingsBalance());
+                        getMenuSelection();
                         break;
                     case 3:
                         exit = true;
@@ -39,7 +42,55 @@ public class Menu {
                         System.out.print(SELECTION_TEXT);
                         break;
                 }
-            }catch (InputMismatchException e){
+            } catch (InputMismatchException e) {
+                System.out.println(INVALID_INPUT);
+                System.out.print(SELECTION_TEXT);
+                menuInput.next();
+            }
+        }
+
+        while (!exit);
+    }
+
+    private static void deposit() {
+        System.out.println();
+        System.out.println("1. Deposit to Checking");
+        System.out.println("2. Deposit to Savings");
+        System.out.println("3. Go back");
+        System.out.print(SELECTION_TEXT);
+        boolean exit = false;
+
+        do {
+            try {
+                int selection = menuInput.nextInt();
+
+                switch (selection) {
+                    case 1:
+                        exit = true;
+                        System.out.println();
+                        System.out.print("Enter amount to deposit to Checking: $");
+                        double cAmount = menuInput.nextDouble();
+                        account.depositChecking(cAmount);
+                        getMenuSelection();
+                        break;
+                    case 2:
+                        exit = true;
+                        System.out.println();
+                        System.out.print("Enter amount to deposit to Savings: $");
+                        double sAmount = menuInput.nextDouble();
+                        account.depositSavings(sAmount);
+                        getMenuSelection();
+                        break;
+                    case 3:
+                        exit = true;
+                        getMenuSelection();
+                        break;
+                    default:
+                        System.out.println(INVALID_SELECTION);
+                        System.out.print(SELECTION_TEXT);
+                        break;
+                }
+            } catch (InputMismatchException e) {
                 System.out.println(INVALID_INPUT);
                 System.out.print(SELECTION_TEXT);
                 menuInput.next();
@@ -64,11 +115,19 @@ public class Menu {
                 switch (selection) {
                     case 1:
                         exit = true;
-                        System.out.println("Enter amount to withdraw from Checking: ");
+                        System.out.println();
+                        System.out.print("Enter amount to withdraw from Checking: $");
+                        double cAmount = menuInput.nextDouble();
+                        account.withdrawChecking(cAmount);
+                        getMenuSelection();
                         break;
                     case 2:
                         exit = true;
-                        System.out.println("Enter amount to withdraw from Savings: ");
+                        System.out.println();
+                        System.out.print("Enter amount to withdraw from Savings: $");
+                        double sAmount = menuInput.nextDouble();
+                        account.withdrawSavings(sAmount);
+                        getMenuSelection();
                         break;
                     case 3:
                         exit = true;
@@ -79,7 +138,7 @@ public class Menu {
                         System.out.print(SELECTION_TEXT);
                         break;
                 }
-            }catch (InputMismatchException e){
+            } catch (InputMismatchException e) {
                 System.out.println(INVALID_INPUT);
                 System.out.print(SELECTION_TEXT);
                 menuInput.next();
@@ -99,8 +158,8 @@ public class Menu {
         int selection = menuInput.nextInt();
         boolean exit = false;
 
-        while (!exit){
-            switch (selection){
+        while (!exit) {
+            switch (selection) {
                 case 1:
                     exit = true;
                     checkBalance();
@@ -111,7 +170,7 @@ public class Menu {
                     break;
                 case 3:
                     exit = true;
-                    System.out.println("Enter amount to deposit: ");
+                    deposit();
                     break;
                 case 4:
                     exit = true;
@@ -152,7 +211,7 @@ public class Menu {
                 System.out.print("Enter your Account number: ");
                 int accountNumber = menuInput.nextInt();
 
-                 account = database.getAccount(accountNumber);
+                account = database.getAccount(accountNumber);
 
                 if (account == null) {
                     System.out.println("Account not found");

@@ -25,6 +25,10 @@ public class Account implements Serializable {
         return accountPin;
     }
 
+    public void setAccountPin(int accountPin) {
+        this.accountPin = accountPin;
+    }
+
     public double getCheckingBalance() {
         return checkingBalance;
     }
@@ -33,22 +37,18 @@ public class Account implements Serializable {
         return savingsBalance;
     }
 
-    public void setAccountPin(int accountPin) {
-        this.accountPin = accountPin;
-    }
-
     public void withdrawSavings(double amount) {
         if (savingsBalance - amount < 0) {
             System.out.println("Insufficient funds");
         } else {
             savingsBalance -= amount;
-            System.out.println("Withdrawal of " + amount + " processed. Remaining savings balance: " + savingsBalance);
+            System.out.println("Withdrawal of $" + amount + " processed. Remaining savings balance: $" + savingsBalance);
         }
     }
 
     public void depositSavings(double amount) {
         savingsBalance += amount;
-        System.out.println("Deposit of " + amount + " processed. New savings balance: " + savingsBalance);
+        System.out.println("Deposit of $" + amount + " processed. New savings balance: $" + savingsBalance);
     }
 
     public void withdrawChecking(double amount) {
@@ -56,12 +56,12 @@ public class Account implements Serializable {
             System.out.println("Insufficient funds");
         } else {
             checkingBalance -= amount;
-            System.out.println("Withdrawal of " + amount + " processed. Remaining checking balance: " + checkingBalance);
+            System.out.println("Withdrawal of $" + amount + " processed. Remaining checking balance: $" + checkingBalance);
         }
     }
 
     public void depositChecking(double amount) {
         checkingBalance += amount;
-        System.out.println("Deposit of " + amount + " processed. New checking balance: " + checkingBalance);
+        System.out.println("Deposit of $" + amount + " processed. New checking balance: $" + checkingBalance);
     }
 }
