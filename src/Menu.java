@@ -8,6 +8,7 @@ public class Menu {
     private static final String INVALID_INPUT = "Invalid input";
     private static final Scanner menuInput = new Scanner(System.in);
     private static Account account;
+    private static Database database;
 
     private Menu() {
     }
@@ -175,6 +176,13 @@ public class Menu {
                 case 4:
                     exit = true;
                     System.out.println("Exiting...");
+
+                    try {
+                        FileHandler.saveState(database, "AccountData");
+                    } catch (IOException e) {
+                        System.out.println("Error saving state: " + e.getMessage());
+                    }
+
                     System.exit(0);
                     break;
                 default:
@@ -188,7 +196,7 @@ public class Menu {
     }
 
     public static void getLogin() {
-        Database database = (Database) FileHandler.loadState("AccountData");
+        database = (Database) FileHandler.loadState("AccountData");
 
         if (database == null) {
             Account acc1 = new Account(12356797, 12345);

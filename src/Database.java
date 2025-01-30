@@ -19,7 +19,7 @@ public class Database implements Serializable {
 
     public void addAccount(Account account) {
         try {
-            Integer accountNumber = account.getAccountNumber();
+            int accountNumber = account.getAccountNumber();
             accounts.putIfAbsent(accountNumber, account);
         } catch (IllegalArgumentException e) {
             System.out.println("Error adding account to database: " + e.getMessage());
@@ -28,7 +28,7 @@ public class Database implements Serializable {
         }
     }
 
-    public Account getAccount(Integer accountNumber) {
+    public Account getAccount(int accountNumber) {
         return accounts.get(accountNumber);
     }
 

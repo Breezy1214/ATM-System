@@ -1,8 +1,6 @@
 import java.io.Serializable;
-import java.util.HashMap;
 
 public class Account implements Serializable {
-    HashMap<Integer, Integer> data = new HashMap<>();
     private int accountNumber;
     private double checkingBalance = 0;
     private double savingsBalance = 0;
