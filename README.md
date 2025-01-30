@@ -1,8 +1,8 @@
-# Banking-System
+# ATM-System
 
 ## Overview
 
-The Banking-System project is a simple ATM simulation written in Java. It allows users to log in with their account
+The ATM-System project is a simple ATM simulation written in Java. It allows users to log in with their account
 number and PIN, check their balance, deposit money, and withdraw money from their accounts.
 
 ## Features
